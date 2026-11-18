@@ -80,7 +80,7 @@ jobs:
 
       # 3. Fail the build on fixable HIGH/CRITICAL vulnerabilities.
       - name: Trivy vulnerability scan
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@0.36.0
         with:
           image-ref: portwatch:ci
           severity: HIGH,CRITICAL
