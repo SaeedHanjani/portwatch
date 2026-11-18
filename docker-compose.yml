@@ -1,0 +1,18 @@
+# Run Port Watch as a long-lived service that exposes Prometheus metrics on :9877.
+# network_mode: host lets the container reach your LAN directly (no NAT in between).
+services:
+  portwatch:
+    image: ghcr.io/saeedhanjani/portwatch:latest   # replace SaeedHanjani with your GitHub username (lowercase)
+    command: ["serve", "-c", "/config/targets.yaml", "--interval", "300"]
+    network_mode: host
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    volumes:
+      - ./targets.yaml:/config/targets.yaml:ro
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://127.0.0.1:9877/metrics', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3

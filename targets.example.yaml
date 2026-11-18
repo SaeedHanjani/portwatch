@@ -1,0 +1,16 @@
+# Port Watch example configuration.
+# Only scan hosts and networks that you own or are explicitly authorized to test.
+
+timeout: 1.0        # seconds to wait for each connection attempt
+concurrency: 200    # parallel connection attempts
+
+targets:
+  - name: web-server
+    host: 192.168.1.10          # a single IP or hostname
+    expected_open: [22, 80, 443]
+    ports: "1-1024,3306,5432,8080"   # ports to probe (expected_open is always included)
+
+  - name: office-lan
+    host: 192.168.1.0/28        # a CIDR network (max 1024 hosts per target)
+    expected_open: [22]         # applies to every host in the network
+    ports: "22,80,443,3389"
