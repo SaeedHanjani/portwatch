@@ -2,7 +2,7 @@
 # network_mode: host lets the container reach your LAN directly (no NAT in between).
 services:
   portwatch:
-    image: ghcr.io/saeedhanjani/portwatch:latest   # replace SaeedHanjani with your GitHub username (lowercase)
+    image: ghcr.io/saeedhanjani/portwatch:latest
     command: ["serve", "-c", "/config/targets.yaml", "--interval", "300"]
     network_mode: host
     restart: unless-stopped
