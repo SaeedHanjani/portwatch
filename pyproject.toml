@@ -9,7 +9,7 @@ description = "Detect unexpected open ports and missing services (port drift) on
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-dependencies = ["PyYAML>=6.0", "prometheus-client>=0.19"]
+dependencies = ["PyYAML>=6.0.3", "prometheus-client>=0.19"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8", "ruff>=0.5"]
